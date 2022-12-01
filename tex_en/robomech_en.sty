@@ -1,0 +1,427 @@
+﻿%
+%        Stylefile for ROBOMECH
+%                                 (modified from RSJ)
+%               Ver. 1.0          by E.Uchibe
+%               Ver. 2.0          by ROBOMECH2014 executive committee
+%               Ver. 2.1          by ROBOMECH2017 program committee (modified for English)
+%               Ver. 2.2          by ROBOMECH2018 program committee (modified for pdflatex)
+%               Ver. 2.3          by ROBOMECH2022 program committee (modified for changing caption styles)
+%
+% This style requires platex (https://www.ctan.org/pkg/platex)
+%
+%\typeout{Document Style Option 'For robomec style file.' by E.Uchibe <31 Jan 95>}
+%\typeout{modified by ROBOMECH2014 executive committee <7 Feb 14>}
+%\typeout{modified by ROBOMECH2017 program committee <22 Feb 17>}
+%\typeout{modified by ROBOMECH2018 program committee <08 Feb 18>}
+\typeout{modified by ROBOMECH2022 program committee <15 Oct 21>}
+\def\@twoc{}
+\twocolumn
+\sloppy
+\flushbottom
+
+%% <from jsize10.clo>
+\renewcommand{\normalsize}{%
+    \@setfontsize\normalsize\@xpt{15}%
+  \abovedisplayskip 10\p@ \@plus2\p@ \@minus5\p@
+  \abovedisplayshortskip \z@ \@plus3\p@
+  \belowdisplayshortskip 6\p@ \@plus3\p@ \@minus3\p@
+   \belowdisplayskip \abovedisplayskip
+   \let\@listi\@listI}
+%\normalsize
+%\setbox0\hbox{\char\euc"A1A1}%
+%\setlength\Cht{\ht0}
+%\setlength\Cdp{\dp0}
+%\setlength\Cwd{\wd0}
+%\setlength\Cvs{\baselineskip}
+%\setlength\Chs{\wd0}
+\renewcommand{\small}{%
+  \@setfontsize\small\@ixpt{11}%
+  \abovedisplayskip 8.5\p@ \@plus3\p@ \@minus4\p@
+  \abovedisplayshortskip \z@ \@plus2\p@
+  \belowdisplayshortskip 4\p@ \@plus2\p@ \@minus2\p@
+  \def\@listi{\leftmargin\leftmargini
+              \topsep 4\p@ \@plus2\p@ \@minus2\p@
+              \parsep 2\p@ \@plus\p@ \@minus\p@
+              \itemsep \parsep}%
+  \belowdisplayskip \abovedisplayskip}
+\renewcommand{\footnotesize}{%
+  \@setfontsize\footnotesize\@viiipt{9.5}%
+  \abovedisplayskip 6\p@ \@plus2\p@ \@minus4\p@
+  \abovedisplayshortskip \z@ \@plus\p@
+  \belowdisplayshortskip 3\p@ \@plus\p@ \@minus2\p@
+  \def\@listi{\leftmargin\leftmargini
+              \topsep 3\p@ \@plus\p@ \@minus\p@
+              \parsep 2\p@ \@plus\p@ \@minus\p@
+              \itemsep \parsep}%
+  \belowdisplayskip \abovedisplayskip}
+\renewcommand{\scriptsize}{\@setfontsize\scriptsize\@viipt\@viiipt}
+\renewcommand{\tiny}{\@setfontsize\tiny\@vpt\@vipt}
+\renewcommand{\large}{\@setfontsize\large\@xiipt{17}}
+\renewcommand{\Large}{\@setfontsize\Large\@xivpt{21}}
+%% </from jsize10.clo>
+\AtBeginDvi{\special{papersize=210mm,297mm}}% A4
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%       Size
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textheight     247mm %           % 297mm - 25mm(head) - 25mm(bottom)
+\textwidth      180mm %           % 210mm - 15mm(left) - 15mm(right)
+
+\topmargin      -0.4mm            % 25mm(head) 
+\headheight     0mm
+\headsep        0mm
+
+\oddsidemargin  -10.4mm            % 15mm(left)
+\evensidemargin -10.4mm
+\columnsep      6mm
+%\parindent      1zw
+%\setbox0\hbox{Kanji Character}\typeout{\the\wd0}
+\parindent9.62216pt
+\newdimen\@ZW
+\@ZW9.62216pt
+
+% Line space
+\setlength{\baselineskip}{4.2mm}
+%\renewcommand{\baselinestretch}{1.0}
+\renewcommand{\baselinestretch}{0.93}
+%\kanjiskip=0.023zw plus 0.015zw minus 0.015zw
+
+% for list environment
+\leftmargini   2em
+\leftmarginv   .5em
+\leftmarginvi  .5em
+
+% for footnote
+\marginparwidth 48pt
+\marginparsep   10pt
+
+\abovecaptionskip	0pt
+\belowcaptionskip	-3pt
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% figure, table caption 
+%
+% \@makecaption{NUMBER}{TEXT} : Macro to make a figure or table caption.  
+%      NUMBER : Figure or table number--e.g., 'Figure 3.2' 
+%      TEXT   : The caption text.
+%  Macro should be called inside a \parbox of right width, with \normalsize.
+% changed 25 Jun 86 to fix according to Howard Trickey:
+% instead of \unhbox\@tempboxa\par we do #1: #2\par
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\long\def\@makecaption#1#2{
+   \vskip 10pt 
+   \setbox\@tempboxa\hbox{#1 #2}
+   \ifdim \wd\@tempboxa >\hsize   % IF longer than one line:
+       \@hangfrom{#1 }#2\par %\ignorespaces #2\strut \par %chaged on 89-09-07
+       %#1 #2\par                 %   THEN set as ordinary paragraph.
+     \else                        %   ELSE  center.
+       \hbox to\hsize{\hfil\box\@tempboxa\hfil}  
+   \fi}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%       Fig. 
+
+%\long\def\@makecaption#1#2{
+% \vskip 10pt 
+% \setbox\@tempboxa\hbox{#1 #2}
+% \ifdim \wd\@tempboxa >\hsize \unhbox\@tempboxa\par \else \hbox
+%to\hsize{\hfil\box\@tempboxa\hfil} 
+% \fi}
+%\def\fnum@figure{{\bf Fig.\thefigure}}
+\def\fnum@figure{{Fig.\thefigure}} %2022 modified
+
+%       Table 
+%\def\fnum@table{{\bf Table \thetable}}
+\def\fnum@table{{Table \thetable}} %2022 modified
+
+\def\reffig#1{{Fig. }\ref{#1}}
+\def\reftab#1{{Table }\ref{#1}}
+\def\refeqn#1{{Eq. }(\ref{#1})}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Section Titles
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\section{\@startsection{section}{1}{\z@}%
+ {0.8\@ZW plus 0.2\@ZW minus 0.2\@ZW}%
+ {0.4\@ZW plus 0.1\@ZW minus 0.1\@ZW}%
+ {\centering\normalsize\bf}}
+\def\subsection{\@startsection{subsection}{2}{\z@}%
+ {0.8\@ZW plus 0.15\@ZW minus 0.15\@ZW}%
+ {0.1\@ZW plus 0.1\@ZW minus 0\@ZW}%
+ {\small\bf}}
+\def\subsubsection{\@startsection{subsubsection}{3}{\z@}
+ {0.2\@ZW plus 0.1\@ZW minus 0.1\@ZW}%
+ {0.1\@ZW plus 0.1\@ZW minus 0.1\@ZW}%
+ {\small\bf}}
+\def\paragraph{\@startsection{paragraph}{4}{\z@}
+ {0\@ZW}%
+ {0\@ZW}%
+ {\small\bf}}
+\def\subparagraph{\@startsection{subparagraph}{4}{\parindent}
+ {0\@ZW}%
+ {0\@ZW}%
+ {\small\bf}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Copied form the Hara's stype (hara@etl.go.jp)
+% title, author, affiliation, mauthor 
+%
+%  Fonts define
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\titlefont#1#2{\gdef\@titlefont{#1}\gdef\@etitlefont{#2}}
+\def\authorfont#1#2{\gdef\@authorfont{#1}\gdef\eauthorfont{#2}}
+\def\affiliationfont#1#2{\gdef\@affiliationfont{#1}\gdef\@eaffiliationfont{#2}}
+
+\gdef\@titlefont{\Large\bf}
+\gdef\@subtitlefont{\large\bf}
+\gdef\@etitlefont{\large}    % English title font
+\gdef\@esubtitlefont{\normalsize}    % English subtile font
+\gdef\@authorfont{\normalsize}
+\gdef\@affiliationfont{\normalsize}
+\gdef\@eauthorfont{\small} % English authors' names font
+\gdef\@eaffiliationfont{\small} % English affiliation font
+
+\def\abst#1{\gdef\@abst{#1}}
+\def\title#1#2#3#4{\gdef\@title{#1} \gdef\@subtitle{#2} \gdef\@etitle{#3} \gdef\@esubtitle{#4}}
+\def\ThDatePlace#1#2#3{\gdef\@Th{#1} \gdef\@Date{#2} \gdef\@Place{#3}}
+
+%
+%       macro for author & affiliation
+%
+\newtoks\tmptoki
+\newtoks\tmptokii
+
+\def\leftappend#1::#2\to#3{%
+  \tmptoki={\\{#1::#2}}
+  \ifx#3\empty
+    \edef#3{\the\tmptoki}
+  \else
+    \tmptokii=\expandafter{#3}
+    \edef#3{\the\tmptokii\the\tmptoki}
+  \fi
+}
+
+\def\lop#1\to#2{\expandafter\lopoff#1\lopoff#1#2}
+\long\def\lopoff\\#1#2\lopoff#3#4{\def#4{#1}\def#3{#2}}
+%
+% macro for author & mauthor
+%
+%\let\@autor=\empty
+%\def\printauthor{%
+%\ifx\@author\empty
+%  \let\next=\relax
+%\else
+%  \let\next=\printauthor
+%  \lop\@author\to\a
+%  \expandafter\print\a
+%\fi
+%\next}
+
+
+\def\print#1::#2{
+  \hbox{#1}
+  \c@header=#2
+  \headermark%
+  \hskip\columnsep
+}
+%\let\@eautor=\empty
+%\def\printeauthor{%
+%\ifx\@eauthor\empty
+%  \let\next=\relax
+%\else
+%  \let\next=\printeauthor
+%  \lop\@eauthor\to\a
+%  \expandafter\print\a
+%\fi
+%\next}
+
+
+%
+% macro for affliation
+%
+\def\affiliation#1#2{%
+\@ifnextchar[{\@@organization{#1}{#2}}{\@@organization{#1}{#2}[0]}}
+
+\let\@organization=\empty
+\let\@eorganization=\empty
+
+\def\@@organization#1#2[#3]{%
+\leftappend#1::#3\to\@organization
+\leftappend#2::#3\to\@eorganization
+}
+
+\def\printorganization{%
+\ifx\@organization\empty
+  \let\next=\relax
+\else
+  \let\next=\printorganization
+  \lop\@organization\to\a
+  \expandafter\printo\a
+\fi
+\next}
+\def\printeorganization{%
+\ifx\@eorganization\empty
+  \let\next=\relax
+\else
+  \let\next=\printeorganization
+  \lop\@eorganization\to\a
+  \expandafter\eprinto\a
+\fi
+\next}
+
+\def\printo#1::#2{%
+  \orgmark{#2}%
+  \hbox{#1}
+  \hskip\columnsep
+}
+\def\eprinto#1::#2{%
+  \orgmark{#2}%
+  \hbox{#1}
+  \hskip\columnsep
+}
+
+%\def\author#1#2{\@ifnextchar[{\@@author{#1}{#2}}{\@@author{#1}{#2}[0]}}
+%\def\@@author#1#2[#3]{\leftappend#1::#3\to\@author
+%\leftappend#2::#3\to\@eauthor}%
+%\def\mauthor#1#2{\@ifnextchar[{\@@author{$\bigcirc$#1}{$\bigcirc$#2}}{\@@author{$\bigcirc$#1}{$\bigcirc$#2}[0]}}
+
+%\let\@author=\empty
+%\let\@eauthor=\empty
+
+%
+% dagger mark
+%
+\newcount\c@header
+\def\headermark{%
+$^{%
+\ifcase\c@header
+\or \dagger
+\or \dagger\dagger
+\or \dagger\dagger\dagger
+\or \dagger\dagger\dagger\dagger
+\else \dagger\dagger\dagger\dagger\dagger%
+\fi%
+}$
+}
+
+\def\orgmark#1{%
+$^{%
+\ifcase #1
+\or \dagger
+\or \dagger\dagger
+\or \dagger\dagger\dagger
+\or \dagger\dagger\dagger\dagger
+\else \dagger\dagger\dagger\dagger\dagger%
+\fi%
+}$
+}
+
+%
+%  \maketitle 
+%       request \MagTitle{}, \title{}{}, \author{}{}, \affiliation{}{}
+%
+
+\def\maketitle{\par
+ \begingroup
+\def\thefootnote{\fnsymbol{footnote}}
+\def\@makefnmark{\hbox 
+ to 0pt{$^{\@thefnmark}$\hss}} 
+ \if@twocolumn 
+ \twocolumn[\@maketitle] 
+ \else \newpage
+ \global\@topnum\z@ \@maketitle \fi\@thanks
+ \endgroup
+ \setcounter{footnote}{0}
+ \let\maketitle\relax\let\@maketitle\relax
+ \gdef\@etitle{}\let\thanks\relax} 
+
+\def\@maketitle{\newpage
+ \null
+
+% Title %%%%%%%%%%%%%%%%%%%
+
+ \begin{center}
+  \vskip -2\@ZW
+ {\@titlefont \@title \par}     % Title
+ {\@subtitlefont \@subtitle \par}     % Subtitle
+
+% \vskip 1.0\@ZW
+% {\@etitlefont \@etitle \par}        %  English title
+% {\@esubtitlefont \@esubtitle}        % English subtile
+
+% Author name %%%%%%%%%%%%%%%%%%%
+ \null
+ \vskip 0.5\@ZW 
+ \begin{center} %flushleft}
+   {%\lineskip .5em
+     \begin{tabular}[t]{l}
+       \@author 
+       \par
+       \@date
+     \end{tabular} \par
+     }
+ \end{center} %flushleft}
+
+% Affiliation %%%%%%%%%%%%%%%%%%%
+
+\ifx\@organization\empty%
+\else%
+ \vskip 0.5em
+  \vbox{%
+    \@affiliationfont%
+    \hsize=\textwidth%
+    \leftskip=0pt plus 1fill%
+    \rightskip=0pt plus 1fill%
+    \leavevmode\printorganization%
+  }%
+\fi%
+
+\ifx\@organization\empty%
+\else%
+ \vskip 0.2em
+  \vbox{%
+    \@eaffiliationfont%
+    \hsize=\textwidth%
+    \leftskip=0pt plus 1fill%
+    \rightskip=0pt plus 1fill%
+    \leavevmode\printeorganization%
+  }%
+\fi%
+
+ \end{center}
+ \par
+ %\vskip 1.3em
+ }
+
+%       Output abstract
+\def\abstract#1{\long\def\@abstract{#1}}
+\def\@abstract{}
+
+\def\keywords#1{\long\def\@keywords{#1}}
+\def\@keywords{}
+
+\let\@oldmaketitle=\@maketitle
+\def\@maketitle{
+  \@oldmaketitle
+  \begin{center}
+    \begin{minipage}{147mm} % 297mm -25mm(left) -25mm(right)
+      %{\bf Abstract: }
+	\qquad\@abstract
+
+  \vskip 1\@ZW
+    {\itshape\textbf{Key Words}\bf: }{\small \@keywords}
+
+    \end{minipage}
+  \end{center}
+  \vskip 0.5\@ZW
+}
+
+%%% References %%%%%
+\renewcommand{\refname}{References}
+
+% end of file
