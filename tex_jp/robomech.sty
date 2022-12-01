@@ -130,8 +130,8 @@
 \def\authorfont#1#2{\gdef\@authorfont{#1}\gdef\eauthorfont{#2}}
 \def\affiliationfont#1#2{\gdef\@affiliationfont{#1}\gdef\@eaffiliationfont{#2}}
 
-\gdef\@titlefont{\Large\bf}
-\gdef\@subtitlefont{\large\bf}
+\gdef\@titlefont{\Large\bf\textsf}
+\gdef\@subtitlefont{\large\bf\textsf}
 \gdef\@etitlefont{\large}    % 英語のタイトルのフォント
 \gdef\@esubtitlefont{\normalsize}    % 英語のタイトルのフォント
 \gdef\@authorfont{\normalsize}
@@ -309,7 +309,8 @@ $^{%
 
 % 日本語，英語の著者名の表示 %%%%%%%%%%%%%%%%%%%
  \null
- \vskip 0.5zh 
+ % \vskip 0.5zh 
+ \vspace{-4mm}
  \begin{center} %flushleft}
    {%\lineskip .5em
      \begin{tabular}[t]{l}
